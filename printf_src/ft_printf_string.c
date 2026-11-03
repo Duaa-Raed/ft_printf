@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_printf_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalinein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/21 16:22:53 by dalinein          #+#    #+#             */
-/*   Updated: 2026/09/29 10:52:27 by dalinein         ###   ########.fr       */
+/*   Created: 2026/11/02 08:16:38 by dalinein          #+#    #+#             */
+/*   Updated: 2026/11/02 08:16:40 by dalinein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-int	ft_isalpha(int c)
+int	ft_printf_string(char *str)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		return (1);
-	return (0);
+    int i;
+
+    i = 0;
+    if (!str)
+        str = "(null)";
+    while (str[i])
+    {
+        if(write(1, &str[i], 1) == -1)
+            return (-1);
+        i++;
+    }
+    return (i);
 }
-/*
-int	main()
-{
-	char  x= 'h';	
-	printf("%d",ft_isalpha(x));
-}*/	

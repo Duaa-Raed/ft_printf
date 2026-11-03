@@ -12,27 +12,36 @@
 
 NAME = libftprintf.a
 
-CC = cc 
-
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
- 
-AR = ar rcs 
 
+AR = ar rcs
 RM = rm -f
 
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
-SRCS = src/ft_printf.c \ src/ft_printf_utils.c \ src/ft_printf_char.c \ src/ft_printf_string.c \ src/ft_printf.c \ src/ft_printf_number.c \ src/ft_printf_hex.c
+SRCS = printf_src/ft_printf.c \
+       printf_src/ft_printf_unsigned.c \
+       printf_src/ft_printf_char.c \
+       printf_src/ft_printf_string.c \
+       printf_src/ft_printf_number.c \
+       printf_src/ft_printf_hex.c \
+       printf_src/ft_printf_pointer.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-libft_build :
-	$(MAKE) -C $(LIBFT_DIR)
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-$(NAME): $(OBJS) libft_build
- rm -rf .libft_tmp
- mkdir 	.libft_tmp
- cd .libft_tmp 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

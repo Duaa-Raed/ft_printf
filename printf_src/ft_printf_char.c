@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalinein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/24 16:32:57 by dalinein          #+#    #+#             */
-/*   Updated: 2026/09/29 13:50:27 by dalinein         ###   ########.fr       */
+/*   Created: 2026/11/02 08:16:20 by dalinein          #+#    #+#             */
+/*   Updated: 2026/11/02 08:16:24 by dalinein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-int	ft_toupper(int x)
+int ft_printf_char(char c)
 {
-	if (x >= 'a' && x <= 'z')
-	{
-		return (x - 32);
-	}
-	return (x);
+    return (write(1, &c, 1));
 }
-/*int	main(void)
-{
-
-	printf("toupper a: %c\n", ft_toupper('a'));
-	printf("toupper z: %c\n", ft_toupper('z'));
-	printf("toupper Z: %c\n", ft_toupper('Z'));
-
-	return (0);
-}*/
