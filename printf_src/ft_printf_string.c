@@ -14,16 +14,16 @@
 
 int	ft_printf_string(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!str)
-        str = "(null)";
-    while (str[i])
-    {
-        if(write(1, &str[i], 1) == -1)
-            return (-1);
-        i++;
-    }
-    return (i);
+	i = 0;
+	if (!str)
+		str = "(null)";
+	while (str[i])
+	{
+		if (write(1, &str[i], 1) == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
 }

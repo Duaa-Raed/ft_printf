@@ -13,15 +13,15 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdarg.h>
+# include <stdarg.h>
+# include <unistd.h>
 
-int ft_printf(const char *format, ...);
-int ft_printf_char(char c);
-int ft_printf_string(char *str);
-int ft_printf_number(int n);
-int ft_print_hex(unsigned int n, char format);
-int ft_print_pointer(unsigned long long ptr);
-int ft_printf_unsigned(unsigned int n);
+int	ft_printf(const char *format, ...);
+int	ft_printf_char(char c);
+int	ft_printf_string(char *str);
+int	ft_printf_number(int n);
+int	ft_print_hex(unsigned int n, char format);
+int	ft_print_pointer(unsigned long long ptr);
+int	ft_printf_unsigned(unsigned int n);
 
 #endif

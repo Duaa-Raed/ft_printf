@@ -12,18 +12,27 @@
 
 #include "../ft_printf.h"
 
-int ft_print_hex(unsigned int n, char format)
+int	ft_print_hex(unsigned int n, char format)
 {
-    int count;
-    char     *base;
+	int		result;
+	int		count;
+	char	*base;
 
-    count = 0;
-    if(format == 'X')
-        base = "0123456789ABCDEF";
-    else
-        base = "0123456789abcdef";
-    if(n >= 16)
-        count += ft_print_hex(n / 16, format);
-    count += ft_printf_char(base[n % 16]);
-    return (count);
+	count = 0;
+	if (format == 'X')
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	if (n >= 16)
+	{
+		result = ft_print_hex(n / 16, format);
+		if (result == -1)
+			return(-1);
+		count += result;
+	}
+
+	result = ft_printf_char(base[n % 16]);
+	if (result == -1)
+			return(-1);
+	return (count + result);
 }

@@ -6,13 +6,13 @@
 /*   By: dalinein <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 08:16:20 by dalinein          #+#    #+#             */
-/*   Updated: 2026/11/02 08:16:24 by dalinein         ###   ########.fr       */
+/*   Updated: 2026/11/09 09:04:08 by dalinein         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int ft_printf_char(char c)
+int	ft_printf_char(char c)
 {
-    return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
