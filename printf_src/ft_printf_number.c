@@ -15,17 +15,27 @@
 int	ft_printf_number(int n)
 {
 	int		count;
+	int		result;
 	long	number;
 
 	count = 0;
 	number = n;
 	if (number < 0)
 	{
-		count += write(1, "-", 1);
+		if (write(1, "-", 1) == -1)
+			return (-1);
+		count++;
 		number = -number;
 	}
 	if (number >= 10)
-		count += ft_printf_number(number / 10);
-	count += ft_printf_char((number % 10) + '0');
-	return (count);
+	{
+		result = ft_printf_number(number / 10);
+		if (result == -1)
+			return (-1);
+		count += result;
+	}
+	result = ft_printf_char((number % 10) + '0');
+	if (result == -1)
+		return (-1);
+	return (count + result);
 }

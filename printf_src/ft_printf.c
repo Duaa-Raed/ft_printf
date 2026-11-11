@@ -14,8 +14,6 @@
 
 static int	ft_handle_format(char c, va_list *args)
 {
-	unsigned long long	ptr;
-
 	if (c == 'c')
 		return (ft_printf_char(va_arg(*args, int)));
 	else if (c == 's')
@@ -25,14 +23,8 @@ static int	ft_handle_format(char c, va_list *args)
 	else if (c == 'd' || c == 'i')
 		return (ft_printf_number(va_arg(*args, int)));
 	else if (c == 'p')
-	{
-		ptr = (unsigned long long)va_arg(*args, void *);
-		if (!ptr)
-			return (write(1, "(nil)", 5));
-		if (write(1, "0x", 2) == -1)
-			return (-1);
-		return (2 + ft_print_pointer(ptr));
-	}
+		return (ft_print_pointer(
+				(unsigned long long)va_arg(*args, void *)));
 	else if (c == 'x' || c == 'X')
 		return (ft_print_hex(va_arg(*args, unsigned int), c));
 	else if (c == '%')
@@ -47,7 +39,7 @@ static int	ft_process_format(const char *format, int *i, va_list *args)
 	if (format[*i] == '%' && format[*i + 1])
 	{
 		result = ft_handle_format(format[*i + 1], args);
-		i += 2;
+		*i += 2;
 	}
 	else
 	{
@@ -64,12 +56,19 @@ int	ft_printf(const char *format, ...)
 	int		count;
 	int		result;
 
-	count = 0;
 	if (!format)
+		return (-1);
+	i = 0;
+	count = 0;
+	va_start(args, format);
+	while (format[i])
 	{
 		result = ft_process_format(format, &i, &args);
 		if (result == -1)
-			return (va_end(args), -1);
+		{
+			va_end(args);
+			return (-1);
+		}
 		count += result;
 	}
 	va_end(args);
